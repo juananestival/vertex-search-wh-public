@@ -1,0 +1,7 @@
+google-cloud-discoveryengine==0.11.14
+google-cloud-aiplatform
+flask
+flask_cors
+debugpy # Required for debugging.
+ptvsd
+gunicorn

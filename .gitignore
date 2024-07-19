@@ -1,0 +1,5 @@
+venv/
+/venv
+setenv.sh
+__pycache__
+var/log
