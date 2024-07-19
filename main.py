@@ -31,7 +31,7 @@ base_url = "https://discoveryengine.googleapis.com/v1beta"
 serving_config = f"projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{datastore_id}/servingConfigs/{serving_config_id}"
 endpoint = f"{base_url}/{serving_config}:search"
 vertexai.init(project=project_id)
-search_query = "Can you show me the specs of a pixel pro?"
+search_query = ""
 search_serving_config = f"projects/{project_id}/locations/{location}/collections/default_collection/engines/{engine_id}/servingConfigs/default_config"
 
 
@@ -77,6 +77,10 @@ def get_snippets(response):
 
 @app.post("/demo")
 def demo():
+  data = request.get_json()
+  print(f"data {data}")
+  print(f"query {data['text']}")
+  search_query = data['text']
   client = get_client()
   content_search_spec = get_content_search_spec()
   response = client.search(
@@ -101,7 +105,7 @@ def demo():
         {
           "text": {
             #"text": ["test"]
-            "text": [response.summary.summary_textgi]
+            "text": [response.summary.summary_text]
             }
         },
         {
